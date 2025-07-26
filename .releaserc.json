@@ -117,11 +117,11 @@
         "assets": [
           {
             "path": "dist/**/*.{js,ts,d.ts}",
-            "label": "Build artifacts"
+            "label": "Build artifacts v${nextRelease.version}"
           },
           {
             "path": "CHANGELOG.md",
-            "label": "Changelog"
+            "label": "Changelog v${nextRelease.version}"
           }
         ]
       }

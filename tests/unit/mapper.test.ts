@@ -66,5 +66,31 @@ describe('Hassan Data Mapper - Core Mapper Logic', () => {
         cool: 'dirct cool',
       })
     })
+
+    it('should add direct object value with the mapped values', () => {
+      const mapper = createMapper({
+        map: {
+          id: 'user_id',
+          email: 'email_address',
+          active: 'is_active',
+          cool: h.direct({ greetingAr: 'Marhba', greetingEn: 'Hi' }),
+        },
+      })
+
+      const source = {
+        user_id: 123,
+        email_address: 'test@example.com',
+        is_active: true,
+      }
+
+      const result = mapper.map(source)
+
+      expect(result).toEqual({
+        id: 123,
+        email: 'test@example.com',
+        active: true,
+        cool: { greetingAr: 'Marhba', greetingEn: 'Hi' },
+      })
+    })
   })
 })

@@ -1,0 +1,23 @@
+[
+  {
+    "name": "ESM Build",
+    "path": "dist/esm/index.js",
+    "limit": "10 KB",
+    "webpack": false,
+    "running": false
+  },
+  {
+    "name": "CommonJS Build",
+    "path": "dist/cjs/index.js",
+    "limit": "10 KB",
+    "webpack": false,
+    "running": false
+  },
+  {
+    "name": "Types",
+    "path": "dist/types/index.d.ts",
+    "limit": "5 KB",
+    "webpack": false,
+    "running": false
+  }
+]

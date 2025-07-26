@@ -1,0 +1,139 @@
+name: Pull Request Checks
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # PR title and description validation
+  validate-pr:
+    name: Validate PR
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.draft == false
+    steps:
+      - name: Validate PR title
+        uses: amannn/action-semantic-pull-request@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          types: |
+            feat
+            fix
+            docs
+            style
+            refactor
+            perf
+            test
+            chore
+            ci
+            build
+          requireScope: false
+          subjectPattern: ^(?![A-Z]).+$
+          subjectPatternError: |
+            The subject "{subject}" found in the pull request title "{title}"
+            didn't match the configured pattern. Please ensure that the subject
+            doesn't start with an uppercase character.
+
+  # Size check
+  size-check:
+    name: Bundle Size Check
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.draft == false
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build package
+        run: npm run build
+
+      - name: Check bundle size
+        uses: andresz1/size-limit-action@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+  # Security audit
+  security:
+    name: Security Audit
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.draft == false
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Audit dependencies
+        run: npm audit --audit-level moderate
+
+      - name: Check for known vulnerabilities
+        run: npx audit-ci --moderate
+
+  # Comment on PR with build info
+  pr-comment:
+    name: PR Comment
+    runs-on: ubuntu-latest
+    needs: [validate-pr, size-check, security]
+    if: github.event.pull_request.draft == false && always()
+    steps:
+      - name: Comment PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+
+            const botComment = comments.find(comment => 
+              comment.user.type === 'Bot' && comment.body.includes('🚀 Build Status')
+            );
+
+            const status = '${{ needs.validate-pr.result }}' === 'success' && 
+                          '${{ needs.size-check.result }}' === 'success' && 
+                          '${{ needs.security.result }}' === 'success' ? '✅' : '❌';
+
+            const body = `## 🚀 Build Status ${status}
+
+            | Check | Status |
+            |-------|--------|
+            | PR Validation | ${{ needs.validate-pr.result === 'success' && '✅' || '❌' }} |
+            | Bundle Size | ${{ needs.size-check.result === 'success' && '✅' || '❌' }} |
+            | Security Audit | ${{ needs.security.result === 'success' && '✅' || '❌' }} |
+
+            _This comment is automatically updated on each push._`;
+
+            if (botComment) {
+              github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: body
+              });
+            } else {
+              github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: body
+              });
+            }

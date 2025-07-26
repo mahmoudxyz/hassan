@@ -1,0 +1,50 @@
+name: 📚 Documentation
+description: Report an issue with documentation
+title: '[Docs]: '
+labels: ['documentation', 'triage']
+assignees:
+  - SampleAssignee
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve our documentation! 📖
+
+  - type: dropdown
+    id: doc-type
+    attributes:
+      label: Documentation Type
+      description: What type of documentation issue is this?
+      options:
+        - README
+        - API Documentation
+        - Examples
+        - Tutorials
+        - Comments in code
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: issue
+    attributes:
+      label: Issue Description
+      description: Describe the documentation issue
+      placeholder: The documentation is unclear about...
+    validations:
+      required: true
+
+  - type: textarea
+    id: location
+    attributes:
+      label: Location
+      description: Where in the documentation is this issue? (file path, URL, section)
+      placeholder: e.g., README.md line 42, or https://...
+
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested Improvement
+      description: How would you improve this documentation?
+      placeholder: The documentation should explain...

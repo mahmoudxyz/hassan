@@ -114,16 +114,7 @@
     [
       "@semantic-release/github",
       {
-        "assets": [
-          {
-            "path": "dist/**/*.{js,ts,d.ts}",
-            "label": "Build artifacts v${nextRelease.version}"
-          },
-          {
-            "path": "CHANGELOG.md",
-            "label": "Changelog v${nextRelease.version}"
-          }
-        ]
+        "assets": false
       }
     ],
     [

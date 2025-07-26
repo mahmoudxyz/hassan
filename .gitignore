@@ -1,6 +1,9 @@
 # Node modules
 node_modules/
 
+
+.husky
+
 # Build output
 dist/
 lib/

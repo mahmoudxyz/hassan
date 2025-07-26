@@ -20,7 +20,7 @@
     "type-check": "tsc --noEmit",
     "prepublishOnly": "npm run build && npm run test && npm run lint",
     "release": "semantic-release",
-    "prepare": "husky install",
+    "prepare": "husky",
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate",
     "contributors:init": "all-contributors init",

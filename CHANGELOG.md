@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/mahmoudxyz/hassan/compare/v1.1.0...v1.1.1) (2025-07-26)
+
+### 🐛 Bug Fixes
+
+* update package name to scoped @mahmoudxyz/hassan ([8002c0f](https://github.com/mahmoudxyz/hassan/commit/8002c0fb7631b6131703db3ccff29f095654d4f9))
+* update package name to scoped @mahmoudxyz/hassan ([376f2fa](https://github.com/mahmoudxyz/hassan/commit/376f2fa404407518a5a20066c7e7ecd9a80e0150))
+
 ## [1.1.0](https://github.com/mahmoudxyz/hassan/compare/v1.0.0...v1.1.0) (2025-07-26)
 
 ### 🚀 Features

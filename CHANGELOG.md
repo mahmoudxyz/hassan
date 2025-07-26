@@ -1,3 +1,9 @@
+## [1.1.4](https://github.com/mahmoudxyz/hassan/compare/v1.1.3...v1.1.4) (2025-07-26)
+
+### 🐛 Bug Fixes
+
+* add proper export maps for better import resolution ([48fb473](https://github.com/mahmoudxyz/hassan/commit/48fb473f89964758165bf30eed9f44b760b7fc0c))
+
 ## [1.1.3](https://github.com/mahmoudxyz/hassan/compare/v1.1.2...v1.1.3) (2025-07-26)
 
 ### 🐛 Bug Fixes

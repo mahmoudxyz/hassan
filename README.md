@@ -8,7 +8,7 @@
 ## Quick Start
 
 ```bash
-npm install hassan
+npm install @mahmoudxyz/hassan
 ```
 
 ```typescript

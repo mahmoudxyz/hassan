@@ -14,7 +14,6 @@ export default tseslint.config(
       },
     },
     rules: {
-      // TypeScript specific rules
       '@typescript-eslint/no-unused-vars': [
         'error',
         { argsIgnorePattern: '^_' },
@@ -24,7 +23,6 @@ export default tseslint.config(
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       '@typescript-eslint/no-inferrable-types': 'off',
 
-      // General rules
       'no-console': 'warn',
       'no-debugger': 'error',
       'prefer-const': 'error',

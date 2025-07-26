@@ -1,3 +1,9 @@
+## [1.1.3](https://github.com/mahmoudxyz/hassan/compare/v1.1.2...v1.1.3) (2025-07-26)
+
+### 🐛 Bug Fixes
+
+* **ci:** resolve duplicate GitHub release assets conflict ([9b6bbe0](https://github.com/mahmoudxyz/hassan/commit/9b6bbe0d903694ae9e0e7b76bca685143d836e42))
+
 ## [1.1.2](https://github.com/mahmoudxyz/hassan/compare/v1.1.1...v1.1.2) (2025-07-26)
 
 ### 🐛 Bug Fixes

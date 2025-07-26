@@ -1,4 +1,5 @@
 import { createMapper } from '../../src/index'
+import { h } from '../../src/index'
 
 describe('Hassan Data Mapper - Core Mapper Logic', () => {
   describe('Basic Property Mapping', () => {
@@ -37,6 +38,32 @@ describe('Hassan Data Mapper - Core Mapper Logic', () => {
         id: 123,
         email: 'test@example.com',
         active: true,
+      })
+    })
+
+    it('should add direct basic value with the mapped values', () => {
+      const mapper = createMapper({
+        map: {
+          id: 'user_id',
+          email: 'email_address',
+          active: 'is_active',
+          cool: h.direct('dirct cool'),
+        },
+      })
+
+      const source = {
+        user_id: 123,
+        email_address: 'test@example.com',
+        is_active: true,
+      }
+
+      const result = mapper.map(source)
+
+      expect(result).toEqual({
+        id: 123,
+        email: 'test@example.com',
+        active: true,
+        cool: 'dirct cool',
       })
     })
   })

@@ -1,5 +1,8 @@
 {
   "name": "@mahmoudxyz/hassan",
+  "publishConfig": {
+    "access": "public"
+  },
   "version": "1.0.0",
   "type": "module",
   "description": "Type-safe data mapper for TypeScript with zero runtime overhead",

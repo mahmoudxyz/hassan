@@ -1,3 +1,9 @@
+## [1.1.2](https://github.com/mahmoudxyz/hassan/compare/v1.1.1...v1.1.2) (2025-07-26)
+
+### 🐛 Bug Fixes
+
+* make scoped package public for npm publishing ([7d147e6](https://github.com/mahmoudxyz/hassan/commit/7d147e6e216742509b4571fe8f77a925363f43b3))
+
 ## [1.1.1](https://github.com/mahmoudxyz/hassan/compare/v1.1.0...v1.1.1) (2025-07-26)
 
 ### 🐛 Bug Fixes

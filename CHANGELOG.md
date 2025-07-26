@@ -1,3 +1,9 @@
+## [1.1.0](https://github.com/mahmoudxyz/hassan/compare/v1.0.0...v1.1.0) (2025-07-26)
+
+### 🚀 Features
+
+* add new feature to test semantic-release ([6f29828](https://github.com/mahmoudxyz/hassan/commit/6f298286a2d8d3a15b31e67eacdd09cb58610313))
+
 ## 1.0.0 (2025-07-26)
 
 ### ⚠ BREAKING CHANGES
